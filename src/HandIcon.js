@@ -9,9 +9,9 @@ const HAND_ICON = {
     paper: paper,
 };
 
-const HandIcon = ({ value }) => {
+const HandIcon = ({ value, className }) => {
     const src = HAND_ICON[value];
-    return <img src={src} alt={value} />;
+    return <img className={className} src={src} alt={value} />;
 };
 
 export default HandIcon;
