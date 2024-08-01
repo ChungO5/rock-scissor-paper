@@ -73,11 +73,15 @@ const App = () => {
             <div class="Box App-box">
                 <div class="Box-inner">
                     <div class="App-hands">
-                        <div class="Hand">
-                            <HandIcon value={hand} className="Hand-icon" />
+                        <div
+                            class={score > otherScore ? "Hand winner" : "Hand"}
+                        >
+                            <HandIcon value={hand} className={"Hand-icon"} />
                         </div>
                         VS
-                        <div class="Hand">
+                        <div
+                            class={score < otherScore ? "Hand winner" : "Hand"}
+                        >
                             <HandIcon value={otherHand} className="Hand-icon" />
                         </div>
                     </div>
