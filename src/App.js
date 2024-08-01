@@ -5,6 +5,8 @@ import HandButton from "./HandButton";
 import { compareHand, generateRandomHand } from "./utils";
 import HandIcon from "./HandIcon";
 
+const INITIAL_VALUE = "rock";
+
 const getResult = (me, other) => {
     const comparison = compareHand(me, other);
     if (comparison > 0) return "승리";
@@ -13,17 +15,22 @@ const getResult = (me, other) => {
 };
 
 const App = () => {
-    const [hand, setHand] = useState("rock");
-    const [otherHand, setOtherHand] = useState("scissor");
+    const [hand, setHand] = useState(INITIAL_VALUE);
+    const [otherHand, setOtherHand] = useState(INITIAL_VALUE);
+    const [gameHistory, setGameHistory] = useState([]);
 
-    const handleClick = (nexthand) => {
-        setHand(nexthand);
-        setOtherHand(generateRandomHand());
+    const handleClick = (nextHand) => {
+        const nextOtherHand = generateRandomHand();
+        const nextHistoryItem = getResult(nextHand, nextOtherHand);
+        setHand(nextHand);
+        setOtherHand(nextOtherHand);
+        setGameHistory([...gameHistory, nextHistoryItem]);
     };
 
     const handleClearClick = () => {
-        setHand("rock");
-        setOtherHand("rock");
+        setHand(INITIAL_VALUE);
+        setOtherHand(INITIAL_VALUE);
+        setGameHistory([]);
     };
 
     return (
@@ -34,9 +41,12 @@ const App = () => {
                 <HandIcon value={hand} />
                 <HandIcon value={otherHand} />
             </div>
-            <HandButton value="rock" onClick={handleClick} />
-            <HandButton value="scissor" onClick={handleClick} />
-            <HandButton value="paper" onClick={handleClick} />
+            <p>승부 기록: {gameHistory.join(", ")}</p>
+            <div>
+                <HandButton value="rock" onClick={handleClick} />
+                <HandButton value="scissor" onClick={handleClick} />
+                <HandButton value="paper" onClick={handleClick} />
+            </div>
         </div>
     );
 };
