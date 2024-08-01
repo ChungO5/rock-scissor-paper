@@ -10,7 +10,8 @@ const HAND_ICON = {
 };
 
 const HandIcon = ({ value }) => {
-    return <img src={HAND_ICON[value]} alt={value} />;
+    const src = HAND_ICON[value];
+    return <img src={src} alt={value} />;
 };
 
 export default HandIcon;
