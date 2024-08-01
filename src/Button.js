@@ -1,7 +1,15 @@
 import React from "react";
+import resetIcon from "./assets/ic-reset.svg";
 
-const Button = ({ children, onClick }) => {
-    return <button onClick={onClick}>{children}</button>;
+const Button = ({ onClick }) => {
+    return (
+        <img
+            className="App-reset"
+            src={resetIcon}
+            alt="초기화"
+            onClick={onClick}
+        />
+    );
 };
 
 export default Button;
